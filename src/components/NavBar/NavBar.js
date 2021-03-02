@@ -36,7 +36,7 @@ const NavBar = props => {
       highlightOnScroll={highlightOnScroll}
       showMenuButton={showMenuButton}
     >
-      <NavItems routes={props.routes} history={props.history} />
+      <NavItems routes={props.routes} />
       <MenuButtonStyled
         id='hamburger-button'
         src={hamburger}
@@ -72,7 +72,7 @@ NavBar.propTypes = {
 };
 
 NavBar.defaultProps = {
-  color: colors.gray.light
+  fontColor: colors.gray.light
 };
 
 export default NavBar;

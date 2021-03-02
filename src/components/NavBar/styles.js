@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const MenuButtonStyled = styled.img`
   position: absolute;
-  right: 0;
+  right: 18px;
   top: 0;
   display: none;
   padding: 6px 16px;
@@ -12,8 +12,7 @@ export const MenuButtonStyled = styled.img`
 export const NavBarStyled = styled.div`
   color: ${({ fontColor }) => fontColor};
   background-color: ${({ backgroundColor }) => backgroundColor};
-  height: ${({ height }) => height};
-  width: 100%;
+  width: 100vw;
   position: fixed;
   z-index: 1;
   top: 0;
