@@ -10,14 +10,18 @@ const routes = [
 
 export default {
   title: 'Components/Core/NavBar',
-  component: NavBar
+  component: NavBar,
+  argTypes: {
+    fontColor: { control: 'color' },
+    backgroundColor: { control: 'color' }
+  }
 };
 
 const Template = args => <NavBar {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  routes:routes,
-   fontColor:'white',
-   backgroundColor:'black'
+  routes: routes,
+  fontColor: 'white',
+  backgroundColor: 'black'
 };
