@@ -64,7 +64,7 @@ ContentBlock.defaultProps = {
   scaleHeaderOnHover: false,
   applyGlassHeaderOnHover: false,
   roundHeaderOnHover: false,
-  titleSize='lg'
+  titleSize: 'lg'
 };
 
 export default ContentBlock;
