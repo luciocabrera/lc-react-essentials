@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Field } from '../Field';
 import { Button } from '../../Button';
@@ -10,12 +10,9 @@ import {
 } from '../../../util/form';
 
 const Form = props => {
-  const [data, setData] = useState(getInitialData(props.fields));
+  const initialData = getInitialData(props.fields, props.initialData);
+  const [data, setData] = useState(initialData);
   const [errors, setErrors] = useState([]);
-
-  useEffect(() => {
-    setData(getInitialData(props.fields));
-  }, [props.fields]);
 
   const onChange = event => {
     setData({
@@ -27,7 +24,10 @@ const Form = props => {
   const onSubmit = event => {
     event.preventDefault();
     const errorsFields = validateFields(props.fields, data);
-    if (errorsFields.length === 0) props.onAccept(data);
+    if (errorsFields.length === 0) {
+      props.onAccept(data);
+      setData(getInitialData(props.fields, props.initialData));
+    }
     setErrors(errorsFields);
   };
 
@@ -36,7 +36,7 @@ const Form = props => {
     return (
       <Field
         key={`field-${field.accessor}`}
-        value={data[field.accessor]}
+        value={data[field.accessor] || ''}
         onChange={onChange}
         inputFontColor={props.inputFontColor}
         backgroundColor={props.backgroundColor}
