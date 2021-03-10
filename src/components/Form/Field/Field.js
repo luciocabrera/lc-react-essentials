@@ -8,32 +8,48 @@ import { FieldStyled, ErrorMessage, IsRequired } from './styles';
 const getNodeByType = props => {
   switch (props.type) {
     case 'textarea':
-      return <TextArea {...props} />;
+      return (
+        <TextArea
+          accessor={props.accessor}
+          backgroundColor={props.backgroundColor}
+          border={props.border}
+          inputFontColor={props.inputFontColor}
+          value={props.value}
+          onChange={event => props.onChange(event)}
+        />
+      );
     case 'input':
     case 'email':
     default:
-      return <Input {...props} />;
+      return (
+        <Input
+          accessor={props.accessor}
+          backgroundColor={props.backgroundColor}
+          border={props.border}
+          inputFontColor={props.inputFontColor}
+          value={props.value}
+          onChange={event => props.onChange(event)}
+        />
+      );
   }
 };
 
-const Field = props => {
-  return (
-    <FieldStyled fieldBorderColor={props.fieldBorderColor}>
-      <Label labelFontColor={props.labelFontColor} for={props.accessor}>
-        {props.label}
-        {props.required && (
-          <IsRequired isRequiredFontColor={props.isRequiredFontColor}>
-            *
-          </IsRequired>
-        )}
-      </Label>
-      <ErrorMessage errorFontColor={props.errorFontColor}>
-        {props.errorMessage}
-      </ErrorMessage>
-      {getNodeByType(props)}
-    </FieldStyled>
-  );
-};
+const Field = props => (
+  <FieldStyled fieldBorderColor={props.fieldBorderColor}>
+    <Label labelFontColor={props.labelFontColor}>
+      {props.label}
+      {props.required && (
+        <IsRequired isRequiredFontColor={props.isRequiredFontColor}>
+          *
+        </IsRequired>
+      )}
+    </Label>
+    <ErrorMessage errorFontColor={props.errorFontColor}>
+      {props.errorMessage}
+    </ErrorMessage>
+    {getNodeByType(props)}
+  </FieldStyled>
+);
 
 Field.propTypes = {
   /** Field's accessor.*/

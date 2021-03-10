@@ -8,8 +8,11 @@ const Input = React.forwardRef((props, ref) => (
     id={props.accessor}
     name={props.accessor}
     placeholder={`Please enter ${props.label}`}
+    value={props.value || ''}
+    backgroundColor={props.backgroundColor}
+    border={props.border}
+    inputFontColor={props.inputFontColor}
     onChange={event => props.onChange(event)}
-    {...props}
   />
 ));
 
