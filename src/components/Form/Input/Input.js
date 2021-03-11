@@ -13,6 +13,7 @@ const Input = React.forwardRef((props, ref) => (
     border={props.border}
     inputFontColor={props.inputFontColor}
     onChange={event => props.onChange(event)}
+    type={props.type}
   />
 ));
 
@@ -25,7 +26,7 @@ Input.propTypes = {
   /** Input's type.
    * Specifies the type of input element
    */
-  type: PropTypes.oneOf(['input', 'email', 'number']),
+  type: PropTypes.oneOf(['input', 'text', 'email', 'number']),
   /** Input's font color.
    * It is the CSS color property
    * that sets the color of the text.
