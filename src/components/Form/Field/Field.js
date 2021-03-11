@@ -59,7 +59,7 @@ Field.propTypes = {
   /** Field's  type.
    * Specifies the type of input element to be displayed
    */
-  type: PropTypes.oneOf(['input', 'email', 'number', 'textarea']),
+  type: PropTypes.oneOf(['input', 'text', 'email', 'number', 'textarea']),
   /** Field's  is required.
    * Specifies whether the field is mandatory or not
    * , will display a star if so
@@ -100,7 +100,8 @@ Field.defaultProps = {
   errorFontColor: 'red',
   isRequiredFontColor: 'orange',
   fieldBorderColor: '#6c6309',
-  labelFontColor: 'darkgoldenrod'
+  labelFontColor: 'darkgoldenrod',
+  type: 'text'
 };
 
 export default Field;
