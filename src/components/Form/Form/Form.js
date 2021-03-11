@@ -1,43 +1,41 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Field } from '../Field';
 import { Button } from '../../Button';
+import { Field } from '../Field';
 import { FormStyled, ButtonsWrapper } from './styles';
-import {
-  validateFields,
-  getErrorField,
-  getInitialData
-} from '../../../util/form';
+import { getErrorField, getInitialData } from '../../../util/form';
+import useFormData from '../../../hooks/useFormData';
 
 const Form = props => {
-  const initialData = getInitialData(props.fields, props.initialData);
-  const [data, setData] = useState(initialData);
-  const [errors, setErrors] = useState([]);
+  const {
+    data,
+    resetForm,
+    setForm,
+    errors,
+    setField,
+    verifyForm
+  } = useFormData(props.data, props.fields);
 
-  const onChange = event => {
-    setData({
-      ...data,
-      [event.target.name]: event.target.value
-    });
-  };
+  React.useEffect(() => {
+    setForm(getInitialData(props.fields, props.data));
+  }, [props.fields, props.data]);
 
   const onSubmit = event => {
     event.preventDefault();
-    const errorsFields = validateFields(props.fields, data);
+    const errorsFields = verifyForm();
     if (errorsFields.length === 0) {
-      props.onAccept(data);
-      setData(getInitialData(props.fields, props.initialData));
+      if (typeof props.onAccept === 'function') props.onAccept(data);
+      resetForm();
     }
-    setErrors(errorsFields);
   };
 
-  const fields = props.fields.map(field => {
+  const fields = props.fields?.map(field => {
     const errorField = getErrorField(field, errors);
     return (
       <Field
         key={`field-${field.accessor}`}
         value={data[field.accessor] || ''}
-        onChange={onChange}
+        onChange={setField}
         inputFontColor={props.inputFontColor}
         backgroundColor={props.backgroundColor}
         border={props.border}
@@ -63,6 +61,7 @@ const Form = props => {
       <ButtonsWrapper>
         <Button
           label='Submit'
+          type='submit'
           backgroundColor={props.buttonBackgroundColor}
           fontColor={props.buttonFontColor}
           onClick={event => onSubmit(event)}
@@ -75,6 +74,8 @@ const Form = props => {
 Form.propTypes = {
   /** Array of fields to be displayed on the Form */
   fields: PropTypes.arrayOf(Field).isRequired,
+  /** The Data to be displayed on the Form */
+  data: PropTypes.object,
   /** Form's title */
   title: PropTypes.string,
   /** Form's subtitle */
