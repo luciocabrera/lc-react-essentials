@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '../../Button';
 import { Field } from '../Field';
@@ -7,6 +7,7 @@ import { getErrorField, getInitialData } from '../../../util/form';
 import useFormData from '../../../hooks/useFormData';
 
 const Form = props => {
+  const initialData = getInitialData(props.fields, props.data);
   const {
     data,
     resetForm,
@@ -14,11 +15,12 @@ const Form = props => {
     errors,
     setField,
     verifyForm
-  } = useFormData(props.data, props.fields);
+  } = useFormData(initialData, props.fields);
 
-  React.useEffect(() => {
-    setForm(getInitialData(props.fields, props.data));
-  }, [props.fields, props.data]);
+  useEffect(() => {
+    setForm(initialData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.data]);
 
   const onSubmit = event => {
     event.preventDefault();

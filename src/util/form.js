@@ -130,14 +130,11 @@ export const isEmail = val => {
 };
 
 export const getInitialData = (fields, initialData) => {
-  const initial = fields?.reduce(
-    (obj, item) => ({
-      ...obj,
-      [item.accessor]: initialData
-        ? initialData[item.accessor] || ''
-        : item.value || ''
-    }),
-    {}
-  );
-  return initial;
+  const newData = {};
+  fields.forEach(field => {
+    newData[field.accessor] = initialData
+      ? initialData[field.accessor]
+      : field.value || '';
+  });
+  return newData;
 };
