@@ -13,6 +13,3 @@ export * from './components/Form/Input';
 export * from './components/Form/TextArea';
 
 export * from './components/Portal';
-
-
-export * from './hooks';
