@@ -23,6 +23,8 @@ Input.propTypes = {
   /** Field's label which will be used as
    * Input's placeholder. */
   label: PropTypes.string,
+  /** Input's value. */
+  value: PropTypes.string,
   /** Input's type.
    * Specifies the type of input element
    */
@@ -43,7 +45,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
-  type: 'input',
+  type: 'text',
   inputFontColor: 'black',
   backgroundColor: 'transparent',
   border: 'none'
