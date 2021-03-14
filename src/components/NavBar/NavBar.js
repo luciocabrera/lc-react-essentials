@@ -87,7 +87,7 @@ NavBar.propTypes = {
    * It is the CSS background-color property
    * that sets the background color of the NavBar when hovering..
    */
-  backgroundColorOnHover: PropTypes.string,
+  backgroundColorOnHover: PropTypes.string
 };
 
 NavBar.defaultProps = {
