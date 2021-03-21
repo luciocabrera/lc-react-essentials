@@ -87,10 +87,6 @@ export const NavBarStyled = styled.div`
     a {
       height: 3vh !important;
     }
-
-    ${MenuButtonStyled} {
-      padding: 2px 16px;
-    }
     animation: animatetop 0.4s;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
     height:inherit !important;
