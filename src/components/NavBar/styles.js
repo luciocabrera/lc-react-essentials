@@ -18,6 +18,7 @@ export const NavBarStyled = styled.div`
   top: 0;
   left: 0;
   backdrop-filter: brightness(0.4);
+  -webkit-backdrop-filter: brightness(0.4);
   overflow: hidden;
 
   img,
@@ -66,9 +67,6 @@ export const NavBarStyled = styled.div`
           showMenuButton ? `flex` : `none`} !important;
       }
     }
-    svg {
-      height: 3vh;
-    }
     ${MenuButtonStyled} {
       display: flex !important;
     }
@@ -85,10 +83,13 @@ export const NavBarStyled = styled.div`
     background-color: ${highlightOnScrollBackColor};
     svg {
       fill: ${highlightOnScrollFontColor};
-      height: 2vh !important;
     }
     a {
-      height: 2vh !important;
+      height: 3vh !important;
+    }
+
+    ${MenuButtonStyled} {
+      padding: 2px 16px;
     }
     animation: animatetop 0.4s;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
